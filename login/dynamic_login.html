@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background: #1a1a1a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.login-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.elastic-bands {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.band {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* 使用雙重偽元素來創建內外層發光效果 */
+.band::before, .band::after {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  border-radius: 50%;
+  opacity: 0.8;
+}
+
+/* 內層發光效果 */
+.band::before {
+  border: 3px solid;
+  filter: blur(2px) brightness(1.5);
+}
+
+/* 外層發光效果 */
+.band::after {
+  border: 4px solid;
+  filter: blur(8px) brightness(2);
+}
+
+/* 為每個橡皮筋設置不同的顏色 */
+.band:nth-child(1)::before, .band:nth-child(1)::after {
+  border-color: #ff3366;
+  animation: elasticDeform1 12s infinite;
+}
+
+.band:nth-child(2)::before, .band:nth-child(2)::after {
+  border-color: #00ff66;
+  animation: elasticDeform2 15s infinite;
+}
+
+.band:nth-child(3)::before, .band:nth-child(3)::after {
+  border-color: #ffcc33;
+  animation: elasticDeform3 18s infinite;
+}
+
+.login-form {
+  position: relative;
+  padding: 30px;
+  z-index: 1;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-box {
+  width: 100%;
+  margin: 10px 0;
+  padding: 8px 15px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  background: transparent;
+  color: white;
+  font-size: 1em;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.title {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* 添加底部按鈕樣式 */
+.bottom-links {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.link-button {
+  color: rgba(255, 255, 255, 0.7);
+  background: transparent;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: color 0.3s ease;
+}
+
+.link-button:hover {
+  color: white;
+}
+
+@keyframes elasticDeform1 {
+  0%, 100% { transform: scale(1) translate(0, 0) rotate(0deg); border-radius: 50%; }
+  20% { transform: scale(0.9, 1.1) translate(15px, -20px) rotate(5deg); border-radius: 60% 40% 55% 45% / 45% 60% 40% 55%; }
+  40% { transform: scale(1.1, 0.9) translate(-20px, 15px) rotate(-8deg); border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; }
+  60% { transform: scale(0.95, 1.05) translate(10px, -15px) rotate(10deg); border-radius: 55% 45% 50% 50% / 40% 55% 45% 60%; }
+  80% { transform: scale(1.05, 0.95) translate(-15px, 10px) rotate(-5deg); border-radius: 50% 50% 45% 55% / 55% 45% 50% 50%; }
+}
+
+@keyframes elasticDeform2 {
+  0%, 100% { transform: scale(1) translate(0, 0) rotate(0deg); border-radius: 50%; }
+  20% { transform: scale(1.1, 0.9) translate(-20px, -15px) rotate(-10deg); border-radius: 40% 60% 45% 55% / 55% 45% 60% 40%; }
+  40% { transform: scale(0.9, 1.1) translate(15px, 20px) rotate(8deg); border-radius: 55% 45% 60% 40% / 45% 55% 40% 60%; }
+  60% { transform: scale(1.05, 0.95) translate(-10px, -20px) rotate(-5deg); border-radius: 45% 55% 50% 50% / 60% 40% 55% 45%; }
+  80% { transform: scale(0.95, 1.05) translate(20px, 15px) rotate(12deg); border-radius: 50% 50% 55% 45% / 45% 55% 50% 50%; }
+}
+
+@keyframes elasticDeform3 {
+  0%, 100% { transform: scale(1) translate(0, 0) rotate(0deg); border-radius: 50%; }
+  20% { transform: scale(0.95, 1.05) translate(20px, -10px) rotate(15deg); border-radius: 55% 45% 40% 60% / 40% 60% 45% 55%; }
+  40% { transform: scale(1.05, 0.95) translate(-15px, 20px) rotate(-12deg); border-radius: 45% 55% 55% 45% / 60% 40% 50% 50%; }
+  60% { transform: scale(0.9, 1.1) translate(10px, -25px) rotate(8deg); border-radius: 60% 40% 45% 55% / 45% 55% 60% 40%; }
+  80% { transform: scale(1.1, 0.9) translate(-25px, 10px) rotate(-15deg); border-radius: 50% 50% 60% 40% / 40% 60% 45% 55%; }
+}
+</style>
+</head>
+<body>
+<div class="login-container">
+  <div class="elastic-bands">
+    <div class="band"></div>
+    <div class="band"></div>
+    <div class="band"></div>
+  </div>
+  <form class="login-form">
+    <div class="title">Login</div>
+    <input type="text" placeholder="Username" class="input-box">
+    <input type="password" placeholder="Password" class="input-box">
+    <div class="bottom-links">
+      <button type="button" class="link-button">Forget Password</button>
+      <button type="button" class="link-button">Signup</button>
+    </div>
+  </form>
+</div>
+</body>
+</html>
